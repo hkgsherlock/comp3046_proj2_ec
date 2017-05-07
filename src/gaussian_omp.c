@@ -24,18 +24,12 @@ void Gaussian_Elimination_omp(int n, double *A, double *b, double *y, int thread
 
 void Back_Substitution_omp(int n, double *U, double *x, double *y, int thread_count) {
     int i, k;
-    double yk;
 
-#pragma omp parallel num_threads(thread_count) default(none) private(i, k) shared(n, U, x, y, tmp)
     for (k = n - 1; k > -1; k--) {
-#pragma omp single
-        yk = y[k];
-#pragma omp for reduction(+:tmp) schedule(static)
+#pragma omp parallel for schedule(static) num_threads(thread_count) default(none) private(i) shared(n, U, x, y, k)
         for (i = k - 1; i > -1; i--) {
             y[i] -= x[k] * U[i * n + k];
         }
-#pragma omp single
-        x[k] = yk / U[k * n + k];
     }
 }
 
