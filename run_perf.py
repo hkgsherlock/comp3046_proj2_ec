@@ -59,4 +59,4 @@ with open('report.csv', 'wb') as csvfile:
 			'err_serial': r['err']['serial'], 
 			'err_omp': r['err']['omp']})
 
-os.rename('report.csv', 'report_%s.csv' % datetime.date.today().strftime("%Y-%m-%d_%H-%M-%S"))
+os.rename('report.csv', 'report_%s.csv' % datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
