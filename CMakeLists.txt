@@ -31,8 +31,10 @@ set(SOURCE_FILES ${SOURCE_FILES}
         src/gaussian.c
         src/gaussian_validate.c
         src/gaussian_omp.c
-        src/main.c)
+        src/main.c src/printf_if.c src/printf_if.h)
 
 set(CMAKE_BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 
 add_executable(gaussian ${SOURCE_FILES})
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/run_perf.py ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
