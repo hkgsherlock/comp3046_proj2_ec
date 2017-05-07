@@ -32,7 +32,9 @@ void Gaussian_assert_validateX(int n, double *A, double *b, double *x, double er
     int err_occur = 0;
     for (i = 0; i < n; i++) {
         if (err[i] > err_rate) {
-//            printf("Assertion failed! \nExpected: %lf\nActual: %lf\nError: %lf\n", b[i], bb[i], err[i]);
+            if (n <= 20) {
+                printf("Assertion failed! \nExpected: %lf\nActual: %lf\nError: %lf\n", b[i], bb[i], err[i]);
+            }
             err_occur++;
         }
     }

@@ -1,4 +1,5 @@
 #include "gaussian.h"
+//#include "vector.h"
 #include <stdlib.h>
 
 void Gaussian_Elimination(int n, double *A, double *b, double *y) {
@@ -34,6 +35,7 @@ void Gaussian_getX(int n, double *A, double *b, double *x) {
     double *y = (double *) malloc(n * sizeof(double));
 
     Gaussian_Elimination(n, A, b, y);
+//    Vec_Show(n, y);
     Back_Substitution(n, A, x, y);
 
     free(y);

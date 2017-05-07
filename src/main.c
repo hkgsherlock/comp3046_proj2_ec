@@ -40,11 +40,13 @@ int main() {
 
     Mat_Init(n, n, A);
     Vec_Init(n, b);
-//    printf("[Init] Matrix A: \n");
-//    Mat_Show_p(n, n, A, 0);
-//    printf("\n");
-//    printf("[Init] Vector b: \n");
-//    Vec_Show_p(n, b, 0);
+    if (n <= 20) {
+        printf("[Init] Matrix A: \n");
+        Mat_Show_p(n, n, A, 0);
+        printf("\n");
+        printf("[Init] Vector b: \n");
+        Vec_Show_p(n, b, 0);
+    }
 
     printf("\n");
     printf("==================================================\n");
@@ -56,9 +58,11 @@ int main() {
     serialStart = clock();
     Gaussian_getX(n, A, b, x);
     serialEnd = clock();
-//    printf("[Single] Vector x: \n");
-//    Vec_Show(n, x);
-//    printf("\n");
+    if (n <= 20) {
+        printf("[Single] Vector x: \n");
+        Vec_Show(n, x);
+        printf("\n");
+    }
     printf("[Single] Elapse: %lf milliseconds\n", ((float)(serialEnd - serialStart) / CLOCKS_PER_SEC) * 1000);
     printf("\n");
     printf("[Single] Error: \n");
@@ -74,9 +78,11 @@ int main() {
     ompStart = omp_get_wtime();
     Gaussian_getX_omp(n, A, b, x, thread_count);
     ompEnd = omp_get_wtime();
-//    printf("[OMP] Vector x: \n");
-//    Vec_Show(n, x);
-//    printf("\n");
+    if (n <= 20) {
+        printf("[OMP] Vector x: \n");
+        Vec_Show(n, x);
+        printf("\n");
+    }
     printf("[OMP] Elapse: %lf milliseconds\n", (ompEnd - ompStart) * 1000);
     printf("\n");
     printf("[OMP] Error: \n");
