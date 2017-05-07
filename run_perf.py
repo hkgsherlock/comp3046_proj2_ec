@@ -6,6 +6,7 @@ import multiprocessing
 import subprocess
 import json
 import csv
+import os
 
 results = []
 
@@ -58,4 +59,4 @@ with open('report.csv', 'wb') as csvfile:
 			'err_serial': r['err']['serial'], 
 			'err_omp': r['err']['omp']})
 
-os.rename('report.csv', 'report_%s.csv' % d_date.strftime("%Y-%m-%d_%H:%M:%S"))
+os.rename('report.csv', 'report_%s.csv' % datetime.date.today().strftime("%Y-%m-%d_%H-%M-%S"))
